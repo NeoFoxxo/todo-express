@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
     });
 })
 
-// connect to the database
+// DATABASE DETAILS
 const db = mysql.createConnection({
     host: "127.0.0.1",
     user: "root",
@@ -56,11 +56,11 @@ app.post("/items/delete", (req, res) => {
     // get the id from the frontend
     let id = (req.body.item_id);
 
-        // execute the sql
-        db.query(`DELETE FROM items WHERE items.item_id =('${id}')`, (err, result) => {
-            if (err) throw err;
-            console.log(result); 
-        })
+    // execute the sql
+    db.query(`DELETE FROM items WHERE items.item_id =('${id}')`, (err, result) => {
+        if (err) throw err;
+        console.log(result); 
+    })
 });
 
 // the endpoint to edit items in the database
@@ -70,11 +70,25 @@ app.post("/items/edit", (req, res) => {
     let id = (req.body.item_id);
     let text = (req.body.item_text);
 
-        // execute the sql
-        db.query(`UPDATE items SET item_text = '${text}' WHERE items.item_id = ${id}`, (err, result) => {
-            if (err) throw err;
-            console.log(result); 
-        })
+    // execute the sql
+    db.query(`UPDATE items SET item_text = '${text}' WHERE items.item_id = ${id}`, (err, result) => {
+        if (err) throw err;
+        console.log(result); 
+    })
+});
+
+// the endpoint to edit items in the database
+app.post("/items/finished", (req, res) => {
+
+    // get the id and text that was sent from the frontend
+    let isFinished = (req.body.is_finished);
+    let id = (req.body.item_id);
+
+    // execute the sql
+    db.query(`UPDATE items SET is_finished = '${isFinished}' WHERE items.item_id = ${id}`, (err, result) => {
+        if (err) throw err;
+        console.log(result); 
+    })
 });
 
 // start the server

@@ -4,7 +4,7 @@ function deleteList(itemID) {
     const array = itemID.split(",");
 
     // make a confirm box with the text of the item to warn user
-    let deleteComfirm = confirm(`Are you sure you want to delete${array[1]}`);  
+    let deleteComfirm = confirm(`Are you sure you want to delete "${array[1]}"`);  
     
     // if they clicked continue send the post request to delete it
     if (deleteComfirm) {

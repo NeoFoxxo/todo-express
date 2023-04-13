@@ -8,7 +8,7 @@
     <!-- import all the js files -->
     <script src="js/delete.js" defer></script>
     <script src="js/edit.js" defer></script>
-    <script src="js/done.js" defer></script>
+    <script src="js/done.js"></script>
     <script src="js/add.js" defer></script>
 
     <!-- Bootstrap 5 CSS -->
@@ -19,7 +19,6 @@
   </head>
   <body>
  </header>
-  
       
  <main>
         <div class=" container rounded-3 border border-2 border-dark my-5 bg-white" style="height:auto;">
@@ -39,9 +38,16 @@
         <div class=" col-12"> 
         <ul class=" list-group" id="list">
             <% for(var i=0; i<items.length; i++) { %> <li class=" my-3 py-3 shadow list-group-item ">
+                <script>
+                // when the page first loads give the item id and is finished value to the start function
+                document.addEventListener("DOMContentLoaded", function() {
+                    const listId = "<%= items[i].item_id %>, <%= items[i].is_finished %>";
+                    start(listId);
+                  });
+                  </script>
                     <div class="row">
                     <div class="col-1">
-                    <input class="checkbox" type="checkbox" onclick="done(this.value)" value="<%= items[i].item_id %>">
+                    <input class="checkbox" type="checkbox" onclick="done(this.value)" value="<%= items[i].item_id %>, <%= items[i].is_finished %>" id="check <%= items[i].item_id %>">
                     </div>
                     <div class="col-6">
                         <span class="h4 text" id="<%= items[i].item_id %>"> <%= items[i].item_text %> </span>

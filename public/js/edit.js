@@ -4,7 +4,7 @@ function editList(itemID) {
     const array = itemID.split(",");
 
     // send prompt to the user with the name of the item
-    let newText = prompt(`Edit item${array[1]}`);
+    let newText = prompt(`Edit item "${array[1]}"`);
     if (newText != null) {
 
         const data = {
